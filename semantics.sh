@@ -39,8 +39,9 @@ echo_end() { printf "\n%s%s%s%s%s%s %s\n" "$(tput cuu 2)" "$(tput el)" "$(tput d
 echo_success() { echo_end "${ICON_OK}" "$@"; }
 echo_fail() { echo_end "${ICON_FAIL}" "$@"; }
 
-DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-FILE="${DIR}/$(basename "${BASH_SOURCE[0]}")"
+SOURCE=${BASH_SOURCE[0]:-${ZSH_SCRIPT}}
+DIR="$(cd "$(dirname "${SOURCE}")" && pwd)"
+FILE="${DIR}/$(basename "${SOURCE}")"
 BASENAME="$(basename "${FILE}" .sh)"
 
 trap die ERR
@@ -55,19 +56,6 @@ die() {
   fi
 #  exit 1
 }
-
-# see https://stackoverflow.com/questions/2683279/how-to-detect-if-a-script-is-being-sourced
-sourced=0
-if [ -n "${ZSH_EVAL_CONTEXT:-}" ]; then
-  case $ZSH_EVAL_CONTEXT in *:file) sourced=1;; esac
-elif [ -n "${KSH_VERSION:-}" ]; then
-  [ "$(cd "$(dirname -- "$0")" && pwd -P)/$(basename -- "$0")" != "$(cd "$(dirname -- "${.sh.file}")" && pwd -P)/$(basename -- "${.sh.file}")" ] && sourced=1
-elif [ -n "${BASH_VERSION:-}" ]; then
-  (return 0 2>/dev/null) && sourced=1
-else # All other shells: examine $0 for known shell binary filenames
-  # Detects `sh` and `dash`; add additional shell filenames as needed.
-  case ${0##*/} in sh|dash) sourced=1;; esac
-fi
 
 main() {
   echo ""
@@ -98,6 +86,6 @@ main() {
   echo_fail 42
 }
 
-if [ "${sourced}" -eq 0 ]; then
+if [ "${BASENAME}" = "semantics" ]; then
   main "$@"
 fi
