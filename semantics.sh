@@ -39,8 +39,8 @@ echo_end() { printf "\n%s%s%s%s%s%s %s\n" "$(tput cuu 2)" "$(tput el)" "$(tput d
 echo_success() { echo_end "${ICON_OK}" "$@"; }
 echo_fail() { echo_end "${ICON_FAIL}" "$@"; }
 
-DIR="$(cd "$(dirname "$0")" && pwd)"
-FILE="${DIR}/$(basename "$0")"
+DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+FILE="${DIR}/$(basename "${BASH_SOURCE[0]}")"
 BASENAME="$(basename "${FILE}" .sh)"
 
 trap die ERR
@@ -72,7 +72,7 @@ fi
 main() {
   echo ""
   echo "   This script is intented to be sourced to provide further semantic functions."
-  echo "   Example: curl -sLS https://github.com/bkahlert/foundation/ | sh"
+  echo "   Example: curl -sLS https://github.com/bkahlert/-/raw/main/semantics.sh | source"
   echo ""
   echo "${FG_BLACK} ▎${FG_RED} ▎${FG_GREEN} ▍${FG_YELLOW} ▌${FG_BLUE} ▋${FG_MAGENTA} ▊${FG_CYAN} ▉${FG_WHITE} █${RESET}"
   print_info
