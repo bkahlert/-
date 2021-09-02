@@ -25,13 +25,13 @@ ICON_FAIL="${FG_RED}✘$(tput sgr0)"
 ICON_UNKNOWN="${FG_YELLOW}?$(tput sgr0)"
 ICON_START="${FG_CYAN}…$(tput sgr0)"
 
-print_info() { echo "${ICON_INFO}" "$@"; }
-print_ok() { echo "${ICON_OK}" "$@"; }
-print_new() { echo "${ICON_NEW}" "$@"; }
-print_item()  { echo "${ICON_ITEM}" "$@"; }
-print_list() { for item in "$@"; do print_item "$item"; done; }
-print_error() { echo "${ICON_ERROR}" "$@"; }
-print_fail() { echo "${ICON_FAIL}" "$@"; }
+echo_info() { echo "${ICON_INFO}" "$@"; }
+echo_ok() { echo "${ICON_OK}" "$@"; }
+echo_new() { echo "${ICON_NEW}" "$@"; }
+echo_item()  { echo "${ICON_ITEM}" "$@"; }
+echo_list() { for item in "$@"; do echo_item "$item"; done; }
+echo_error() { echo "${ICON_ERROR}" "$@"; }
+echo_fail() { echo "${ICON_FAIL}" "$@"; }
 
 __start_args=""
 echo_start() { __start_args=$*; echo "$@" "${ICON_START}"; }
@@ -75,17 +75,17 @@ main() {
   echo "   Example: curl -sLS https://github.com/bkahlert/-/raw/main/semantics.sh | source"
   echo ""
   echo "${FG_BLACK} ▎${FG_RED} ▎${FG_GREEN} ▍${FG_YELLOW} ▌${FG_BLUE} ▋${FG_MAGENTA} ▊${FG_CYAN} ▉${FG_WHITE} █${RESET}"
-  print_info
-  print_info "$TERM"
-  print_ok
-  print_ok "success 123"
-  print_new
-  print_new "new 123"
-  print_item
-  print_item "item 123"
-  print_list "item 1" "item 2" "item 3"
-  print_error
-  print_error "error 123"
+  echo_info
+  echo_info "$TERM"
+  echo_ok
+  echo_ok "success 123"
+  echo_new
+  echo_new "new 123"
+  echo_item
+  echo_item "item 123"
+  echo_list "item 1" "item 2" "item 3"
+  echo_error
+  echo_error "error 123"
   echo_start
   echo_end
   echo_start "Succeeding with no result"
