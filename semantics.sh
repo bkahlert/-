@@ -33,9 +33,19 @@ print_list() { for item in "$@"; do print_item "$item"; done; }
 print_error() { echo "${ICON_ERROR}" "$@"; }
 print_fail() { echo "${ICON_FAIL}" "$@"; }
 
-_last_start=''
-echo_start() { if [ "$#" -eq 0 ]; then _last_start=$*; else _last_start="$* ${ICON_START}"; fi; echo "$_last_start"; }
-echo_end() { printf "\n%s%s%s%s%s%s %s\n" "$(tput cuu 2)" "$(tput el)" "$(tput dim)" "${RESET}" "${_last_start}" "$(tput cub 2)" "${*:-"${ICON_UNKNOWN}"}"; }
+__start_args=""
+echo_start() { __start_args=$*; echo "$@" "${ICON_START}"; }
+echo_end() {
+  [ "${__start_args}" = "" ] && return
+  if [ -z "${__INTELLIJ_COMMAND_HISTFILE__:-}" ]; then
+    # override previous line with current argument attached
+    printf "\n%s%s%s%s%s %s\n" "$(tput cuu 2)" "$(tput dim)" "${__start_args}" "${RESET}" "$(tput el)" "${*:-"${ICON_UNKNOWN}"}"
+  else
+    # in IDE just print on next line
+    printf "%s\n" "${*:-"${ICON_UNKNOWN}"}"
+  fi
+  __start_args=""
+}
 echo_success() { echo_end "${ICON_OK}" "$@"; }
 echo_fail() { echo_end "${ICON_FAIL}" "$@"; }
 
@@ -46,15 +56,17 @@ BASENAME="$(basename "${FILE}" .sh)"
 
 trap die ERR
 
-err() {  echo "$(tput setaf 1)[$(date +'%Y-%m-%dT%H:%M:%S%z')] $*" >&2; }
+err() { echo "$(tput setaf 1)[$(date +'%Y-%m-%dT%H:%M:%S%z')] $*" >&2; }
 
 die() {
-  if [ "$#" -eq 0 ]; then
+  if [ ! "${__start_args}" = "" ]; then
+    echo_fail "$@"
+  elif [ "$#" -eq 0 ]; then
     err "line ${LINENO}"
   else
     err "line ${LINENO}:" "$@"
   fi
-#  exit 1
+  exit 1
 }
 
 main() {
