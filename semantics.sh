@@ -101,3 +101,5 @@ main() {
 if [ "${BASENAME}" = "semantics" ]; then
   main "$@"
 fi
+
+source ./.env &>/dev/null || true
