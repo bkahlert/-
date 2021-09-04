@@ -74,6 +74,16 @@ prompt_continue() {
 }
 
 
+# keeps root rights until the process terminates
+sudo_forever() {
+  while true; do
+    sudo -n true "$@"
+    sleep 60
+    kill -0 "$$" || exit
+  done 2>/dev/null &
+}
+
+
 SOURCE=${BASH_SOURCE[0]:-${ZSH_SCRIPT}}
 DIR="$(cd "$(dirname "${SOURCE}")" && pwd)"
 FILE="${DIR}/$(basename "${SOURCE}")"
