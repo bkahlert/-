@@ -49,6 +49,31 @@ echo_end() {
 echo_success() { echo_end "${ICON_OK}" "$@"; }
 echo_fail() { echo_end "${ICON_FAIL}" "$@"; }
 
+
+prompt_continue() {
+  local tty_settings
+  local aborted; aborted=0
+  local answer
+
+  [ $# -ne 0 ] && echo "${FG_YELLOW}$*${RESET}"
+  printf "%sDo you want to continue? [Y/n]%s " "${FG_YELLOW}" "${RESET}"
+  tty_settings=$(stty -g)
+  trap 'stty "'"${tty_settings}"'"' EXIT
+  trap "aborted=1" INT TERM
+  stty raw isig -echo || true
+  answer=$(head -c 1) || true
+  stty "${tty_settings}" || true
+  trap - INT TERM EXIT
+
+  if echo "${answer}" | grep -iq "^n" || [[ "${answer}" =~  $'\x1b' ]] || [[ $aborted == 1 ]]; then
+    echo "${ICON_FAIL} Aborting..."
+    exit 1
+  else
+    echo "${ICON_OK} Continuing..."
+  fi
+}
+
+
 SOURCE=${BASH_SOURCE[0]:-${ZSH_SCRIPT}}
 DIR="$(cd "$(dirname "${SOURCE}")" && pwd)"
 FILE="${DIR}/$(basename "${SOURCE}")"
@@ -96,6 +121,7 @@ main() {
   echo_success 42
   echo_start "Failing with result"
   echo_fail 42
+  prompt_continue "This is an example prompt. Not continuing will exit with code 1."
 }
 
 if [ "${BASENAME}" = "semantics" ]; then
