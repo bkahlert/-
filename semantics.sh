@@ -74,8 +74,10 @@ prompt_continue() {
 }
 
 
-# keeps root rights until the process terminates
+# asks for the admin password upfront
+# and keeps sudo alive until the script finishes
 sudo_forever() {
+  sudo -v
   while true; do
     sudo -n true "$@"
     sleep 60
