@@ -1,0 +1,20 @@
+Background: | Style:      | Text Colors:
+------------|-------------|----------------------------------------------------
+            | Normal      | [0mNone [30mBlack[39m [31mRed[39m [32mGreen[39m [33mYellow[39m [34mBlue[39m [35mMagenta[39m [36mCyan[39m [37mWhite[39m [0m
+            | Bold        | [1mNone [30mBlack[39m [31mRed[39m [32mGreen[39m [33mYellow[39m [34mBlue[39m [35mMagenta[39m [36mCyan[39m [37mWhite[39m [0m
+            | Faint       | [2mNone [30mBlack[39m [31mRed[39m [32mGreen[39m [33mYellow[39m [34mBlue[39m [35mMagenta[39m [36mCyan[39m [37mWhite[39m [0m
+            | Italic      | [3mNone [30mBlack[39m [31mRed[39m [32mGreen[39m [33mYellow[39m [34mBlue[39m [35mMagenta[39m [36mCyan[39m [37mWhite[39m [0m
+            | Underline   | [4mNone [30mBlack[39m [31mRed[39m [32mGreen[39m [33mYellow[39m [34mBlue[39m [35mMagenta[39m [36mCyan[39m [37mWhite[39m [0m
+            | Blink_Slow  | [5mNone [30mBlack[39m [31mRed[39m [32mGreen[39m [33mYellow[39m [34mBlue[39m [35mMagenta[39m [36mCyan[39m [37mWhite[39m [0m
+            | Blink_Rapid | [6mNone [30mBlack[39m [31mRed[39m [32mGreen[39m [33mYellow[39m [34mBlue[39m [35mMagenta[39m [36mCyan[39m [37mWhite[39m [0m
+            | Inverse     | [7mNone [30mBlack[39m [31mRed[39m [32mGreen[39m [33mYellow[39m [34mBlue[39m [35mMagenta[39m [36mCyan[39m [37mWhite[39m [0m
+            | Conceal     | [8mNone [30mBlack[39m [31mRed[39m [32mGreen[39m [33mYellow[39m [34mBlue[39m [35mMagenta[39m [36mCyan[39m [37mWhite[39m [0m
+            | Crossed_Out | [9mNone [30mBlack[39m [31mRed[39m [32mGreen[39m [33mYellow[39m [34mBlue[39m [35mMagenta[39m [36mCyan[39m [37mWhite[39m [0m
+BG Black    | Normal      | [0m[40mNone [30mBlack[39m [31mRed[39m [32mGreen[39m [33mYellow[39m [34mBlue[39m [35mMagenta[39m [36mCyan[39m [37mWhite[39m [0m
+BG Red      | Normal      | [0m[41mNone [30mBlack[39m [31mRed[39m [32mGreen[39m [33mYellow[39m [34mBlue[39m [35mMagenta[39m [36mCyan[39m [37mWhite[39m [0m
+BG Green    | Normal      | [0m[42mNone [30mBlack[39m [31mRed[39m [32mGreen[39m [33mYellow[39m [34mBlue[39m [35mMagenta[39m [36mCyan[39m [37mWhite[39m [0m
+BG Yellow   | Normal      | [0m[43mNone [30mBlack[39m [31mRed[39m [32mGreen[39m [33mYellow[39m [34mBlue[39m [35mMagenta[39m [36mCyan[39m [37mWhite[39m [0m
+BG Blue     | Normal      | [0m[44mNone [30mBlack[39m [31mRed[39m [32mGreen[39m [33mYellow[39m [34mBlue[39m [35mMagenta[39m [36mCyan[39m [37mWhite[39m [0m
+BG Magenta  | Normal      | [0m[45mNone [30mBlack[39m [31mRed[39m [32mGreen[39m [33mYellow[39m [34mBlue[39m [35mMagenta[39m [36mCyan[39m [37mWhite[39m [0m
+BG Cyan     | Normal      | [0m[46mNone [30mBlack[39m [31mRed[39m [32mGreen[39m [33mYellow[39m [34mBlue[39m [35mMagenta[39m [36mCyan[39m [37mWhite[39m [0m
+BG White    | Normal      | [0m[47mNone [30mBlack[39m [31mRed[39m [32mGreen[39m [33mYellow[39m [34mBlue[39m [35mMagenta[39m [36mCyan[39m [37mWhite[39m [0m
