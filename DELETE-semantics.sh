@@ -109,7 +109,7 @@ die() {
 main() {
   echo ""
   echo "   This script is intented to be sourced to provide further semantic functions."
-  echo "   Example: curl -sLS https://github.com/bkahlert/-/raw/main/semantics.sh | source"
+  echo "   Example: curl -LfsS https://github.com/bkahlert/-/raw/main/semantics.sh | source"
   echo ""
   echo "${FG_BLACK} ▎${FG_RED} ▎${FG_GREEN} ▍${FG_YELLOW} ▌${FG_BLUE} ▋${FG_MAGENTA} ▊${FG_CYAN} ▉${FG_WHITE} █${RESET}"
   echo_info
@@ -140,4 +140,4 @@ if [ "${BASENAME}" = "semantics" ]; then
   main "$@"
 fi
 
-source ./.env &>/dev/null || true
+[ ! -f .env ] || source .env
