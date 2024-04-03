@@ -1,0 +1,6 @@
+.env/
+*.log
+ansible.cfg
+/.idea
+/*.iml
+_k3s*
